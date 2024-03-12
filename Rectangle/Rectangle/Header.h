@@ -11,3 +11,4 @@ void SetArrayElement(int userInput, int list[], int highest);
 void DisplayMenu(int userChoice);
 
 void PrintNum(int userInput);
+
