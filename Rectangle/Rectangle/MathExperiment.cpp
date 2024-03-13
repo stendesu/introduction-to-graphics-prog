@@ -8,9 +8,6 @@ int main()
     bool calcuator = false;
     bool accounting = false;
 
-	MathsExperiment me;
-
-	MathsExperiment* mePtr = new MathsExperiment();
 
     while (menu)
     {
@@ -22,7 +19,8 @@ int main()
             userChoice = 0;
             break;
         case 2:
-            // do acounting
+            accounting = true;
+            menu = false;
             userChoice = 0;
             break;
         case 3:
@@ -38,6 +36,10 @@ int main()
     }
 
 #pragma region      Calculator Region
+
+    MathsExperiment me;
+
+    MathsExperiment* mePtr = new MathsExperiment();
 
     int userInputA = 0;
     int userInputB = 0;
@@ -109,24 +111,70 @@ int main()
             cin >> userChoice;
         }
     }
-#pragma endregion
     delete mePtr;
+#pragma endregion
 
-
+#pragma region Accounting Region
 
 
 
     AccountExperiment account;
+    
+    float userInput;
 
-    account.setBalance(1000.0f);
-    account.printBalance();
+    while (accounting)
+    {
+        switch (userChoice)
+        {
+        case 1:
+            cout << "enter amount to set balance: " << endl;
+            cin >> userInput;
 
-    account.addToBalance(500.0f);
-    account.printBalance();
+            account.setBalance(userInput);
 
-    account.setInterestRate(0.05f);
-    account.applyInterestRate();
-    account.printBalance();
+            userChoice = 0;
 
-    return 0;
+            break;
+        case 2:
+            account.printBalance();
+
+            userChoice = 0;
+
+            break;
+        case 3:
+            cout << "enter amount to be added to balance: " << endl;
+            cin >> userInput;
+
+            account.addToBalance(userInput);
+
+            userChoice = 0;
+
+            break;
+        case 4:
+            cout << "set an interest rate (0 - 100): " << endl;
+            cin >> userInput;
+
+            account.setInterestRate(userInput);
+
+            userChoice = 0;
+
+            break;
+        case 5:
+            account.applyInterestRate();
+
+            userChoice = 0;
+            
+            break;
+        case 6:
+            accounting = false;
+            menu = false;
+
+            break;
+        default:
+            cout << "1. Set balance 2. view balance 3. Add to balance 4. set interest rate 5. Apply interest rate to balance 6. exit" << endl;
+            cin >> userChoice;
+            break;
+        }
+    }
+#pragma endregion
 }

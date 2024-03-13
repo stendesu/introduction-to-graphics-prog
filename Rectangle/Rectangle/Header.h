@@ -76,6 +76,6 @@ public:
 
 	void applyInterestRate()
 	{
-		totalBalance = (totalBalance / 100) + 1;
+		totalBalance *= (interestRate / 100);
 	}
 };
